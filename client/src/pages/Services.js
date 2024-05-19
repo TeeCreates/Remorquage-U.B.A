@@ -54,13 +54,8 @@ console.log("loading", loading)
 
 
 
-  const videoRef = useRef(null);
 
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play();
-    }
-  }, []);
+
   return (
     <>
       {loading ? (
@@ -106,7 +101,7 @@ console.log("loading", loading)
           <AnimatedSection>
             <p>SERVICE AREA</p>
             <Section>
-            <Video ref={videoRef} autoPlay muted>
+            <Video  autoPlay muted>
       <source src={textmessage} type="video/mp4" />
       Your browser does not support the video tag.
     </Video>
