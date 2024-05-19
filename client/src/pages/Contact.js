@@ -41,24 +41,5 @@ const LoadingContainer = styled.div`
   align-items: center;
 `;
 
-const ServicesWrapper = styled.div`
-  padding: 20px;
-  text-align: center;
-  color: #333;
-`;
-
-const ServiceList = styled.ul`
-  list-style-type: none;
-  padding: 0;
-`;
-
-const ServiceItem = styled.li`
-  background: #ffbe33;
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 5px;
-  color: white;
-  font-weight: bold;
-`;
 
 export default Contact;
