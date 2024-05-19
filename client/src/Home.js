@@ -8,6 +8,7 @@ export const Home = () => {
     <>
       <SectionWrapper1>
         <IntroText>
+          <H1>514-343-2345</H1>
           <H1>Providng 24/7 towing</H1>
           <H1>service with prompt </H1>
           <H1>response</H1>

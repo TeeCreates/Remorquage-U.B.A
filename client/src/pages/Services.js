@@ -8,48 +8,59 @@ import charger from "../assets/charger.jpg";
 import motorcycle from "../assets/motorcycle.jpg";
 import cartow from "../assets/cartow.jpg";
 import textmessage from "../assets/textmessage.mp4";
-import tire from "../assets/tire.jpg"
-import boost from "../assets/boost.jpg"
-import cycletow from "../assets/motorcycletow.jpg"
-import tow from "../assets/tow.jpg"
+import tire from "../assets/tire.jpg";
+import boost from "../assets/boost.jpg";
+import cycletow from "../assets/motorcycletow.jpg";
+import tow from "../assets/tow.jpg";
+import Loading from "./Loading";
 
 const Services = () => {
   const [loading, setLoading] = useState(true);
-  const [imagesLoaded, setImagesLoaded] = useState(0);
-  const totalImages = 8; // Total number of images to load
+  const imageSources = [
+    laval,
+    montreal,
+    flattire,
+    charger,
+    motorcycle,
+    cartow,
+    tire,
+    boost,
+    cycletow,
+    tow,
+  ];
 
   useEffect(() => {
-    // Simulate loading delay (remove in actual implementation)
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 2000); // Adjust the timeout duration as needed
+    const loadImage = (src) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = resolve;
+        img.onerror = reject;
+      });
+    };
+    console.log("loading", loading)
+    const preloadImages = async () => {
+      try {
+        await Promise.all(imageSources.map((src) => loadImage(src)));
+        setLoading(false);
+      } catch (error) {
+        console.error("Failed to load images", error);
+      }
+    };
 
-    // Clean up function to clear the timeout
-    return () => clearTimeout(timeout);
-  }, []);
-
-  const handleImageLoad = () => {
-    setImagesLoaded(prev => prev + 1);
-  };
-
-  useEffect(() => {
-    if (imagesLoaded === totalImages) {
-      setLoading(false);
-    }
-  }, [imagesLoaded, totalImages]);
-
+    preloadImages();
+  }, [imageSources]);
+console.log("loading", loading)
   return (
     <>
       {loading ? (
-        <LoadingContainer>
-          <CircularProgress style={{ color: "#FFBE33" }} />
-        </LoadingContainer>
+ <Loading/>
       ) : (
         <Wrapper>
           <Title>OUR SERVICES</Title>
           <DetailedServiceText>
             <ServiceDiv>
-              <HumanTouchImg src={tire} alt="" onLoad={handleImageLoad} />
+              <HumanTouchImg src={tire} alt="" />
               <Icon src={flattire} alt="" />
               <p>
                 Flat-tire replacement <br /> Get back on your way in no time
@@ -57,7 +68,7 @@ const Services = () => {
               </p>
             </ServiceDiv>
             <ServiceDiv>
-              <HumanTouchImg src={boost} alt="" onLoad={handleImageLoad} />
+              <HumanTouchImg src={boost} alt="" />
               <Icon src={charger} alt="" />
               <p>
                 Battery test/or boost<br />Have your battery checked or
@@ -65,7 +76,7 @@ const Services = () => {
               </p>
             </ServiceDiv>
             <ServiceDiv>
-              <HumanTouchImg src={cycletow} alt="" onLoad={handleImageLoad} />
+              <HumanTouchImg src={cycletow} alt="" />
               <Icon src={motorcycle} alt="" />
               <p>
                 Motorcycle Towing<br />we'll come to help even if you're riding
@@ -73,7 +84,7 @@ const Services = () => {
               </p>
             </ServiceDiv>
             <ServiceDiv>
-              <HumanTouchImg src={tow} alt="" onLoad={handleImageLoad} />
+              <HumanTouchImg src={tow} alt="" />
               <Icon src={cartow} alt="" />
               <p>
                 Car Towing <br />
@@ -112,16 +123,7 @@ const Title = styled.span`
   margin-bottom: 10px;
 `;
 
-const LoadingContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -153,16 +155,20 @@ const Icon = styled.img`
 `;
 const HumanTouchImg = styled.img`
   height: 150px;
-  border-radius: 50%;
+  width: 200px;
+
 `;
 const ServiceDiv = styled.div`
   border: 1px solid #ffbe33;
   width: 100%;
   margin: 30px;
   padding: 20px;
-
+  &:hover {
+    transform: scale(1.05);
+  }
   &:hover p {
     color: #ffbe33;
+
   }
 
   p {
@@ -183,6 +189,23 @@ const Video = styled.video`
   border-radius: 20px;
   height: 600px;
   width: auto;
+
+  animation: slideIn 2s forwards, fadeIn 1s forwards;
+
+  @keyframes slideIn {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 const DetailedServiceText = styled.div`

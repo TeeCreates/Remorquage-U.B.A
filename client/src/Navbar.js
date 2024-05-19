@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Navbar = () => {
-  const [activeLink, setActiveLink] = useState(null);
+  const [activeLink, setActiveLink] = useState(window.location.pathname);
+
+  useEffect(() => {
+    // Set the active link based on the current URL path when the component mounts
+    setActiveLink(window.location.pathname);
+  }, []);
 
   const handleNavigation = (path) => {
-    window.location.href = path;
     setActiveLink(path); // Set active link when clicked
+    window.location.href = path; // Navigate to the path
   };
 
   return (
     <NavbarWrapper>
-      <ClickableH1 href="/">REMORQUAGE U.B.A</ClickableH1>
+      <ClickableH1 onClick={() => handleNavigation("/")}>REMORQUAGE U.B.A</ClickableH1>
       <NavLinks>
         <Button
           onClick={() => handleNavigation("/services")}
@@ -67,30 +72,30 @@ const Button = styled.button`
   background-size: 200% 100%;
   background-position: right bottom;
   transition: background-position 0.4s ease, color 0.4s ease;
+  color: white; /* Ensure initial text color is set to black */
 
-  &:hover,
-  &.active {
+  &:hover {
     background-position: left bottom;
     color: black;
   }
 
   &.active {
     font-weight: bold;
-    background: #ffbe33; /* Set background color to #ffbe33 when active */
+    background: #ffbe33;
+    color: black; /* Ensure font color is black when active */
   }
 `;
 
-const ClickableH1 = styled.a`
+const ClickableH1 = styled.h1`
   font-family: "Russo One", sans-serif;
   font-weight: bold;
   margin-left: 53px;
   font-size: 25px;
-  text-decoration: none;
   color: #ffbe33;
   cursor: pointer;
 
   &:hover {
-    cursor: pointer;
+    color: #ffbe33; /* Ensure hover color stays the same */
   }
 `;
 
