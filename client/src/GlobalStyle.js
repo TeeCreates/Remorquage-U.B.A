@@ -31,9 +31,12 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
-h1,h2,h3,span,p{
+h1,h2,h3{
     color: #FFBE33;
     font-family: "Russo One", sans-serif;
+}
+span, p, div {
+	color: white;
 }
 body {
     

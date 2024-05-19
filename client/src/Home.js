@@ -2,6 +2,7 @@ import carbg from "./assets/carbg.jpg";
 import styled, { keyframes } from "styled-components";
 import { Section2 } from "./Section2";
 
+
 export const Home = () => {
   return (
     <>
@@ -30,7 +31,7 @@ const SectionWrapper1 = styled.div`
   align-items: center;
   position: relative;
   overflow: hidden;
-
+width: 100%;
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
