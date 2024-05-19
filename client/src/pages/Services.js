@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import CircularProgress from "@mui/material/CircularProgress";
-import laval from "../assets/laval.jpg";
-import montreal from "../assets/montreal.jpg";
+import laval from "../assets/laval.png";
+import montreal from "../assets/montreal.png";
 import flattire from "../assets/flattire.jpg";
 import charger from "../assets/charger.jpg";
 import motorcycle from "../assets/motorcycle.jpg";
