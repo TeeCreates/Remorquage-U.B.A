@@ -29,7 +29,10 @@ const Services = () => {
     tow,
   ];
 
+  const isMounted = useRef(false);
+
   useEffect(() => {
+    isMounted.current = true;
     const loadImage = (src) => {
       return new Promise((resolve, reject) => {
         const img = new Image();
@@ -38,28 +41,31 @@ const Services = () => {
         img.onerror = reject;
       });
     };
-    console.log("loading", loading)
+
     const preloadImages = async () => {
       try {
         await Promise.all(imageSources.map((src) => loadImage(src)));
-        setLoading(false);
+        if (isMounted.current) {
+          setLoading(false);
+        }
       } catch (error) {
         console.error("Failed to load images", error);
       }
     };
 
     preloadImages();
+
+    return () => {
+      isMounted.current = false;
+    };
   }, [imageSources]);
-console.log("loading", loading)
-
-
-
-
 
   return (
     <>
       {loading ? (
- <Loading/>
+        <LoadingContainer>
+          <CircularProgress style={{ color: "#FFBE33" }} />
+        </LoadingContainer>
       ) : (
         <Wrapper>
           <Title>OUR SERVICES</Title>
@@ -101,10 +107,10 @@ console.log("loading", loading)
           <AnimatedSection>
             <p>SERVICE AREA</p>
             <Section>
-            <Video  autoPlay muted>
-      <source src={textmessage} type="video/mp4" />
-      Your browser does not support the video tag.
-    </Video>
+              <Video autoPlay muted>
+                <source src={textmessage} type="video/mp4" />
+                Your browser does not support the video tag.
+              </Video>
               <CitiesDiv>
                 <City>
                   <CityTitle>Montreal</CityTitle>
@@ -128,7 +134,16 @@ const Title = styled.span`
   margin-bottom: 10px;
 `;
 
-
+const LoadingContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -176,7 +191,8 @@ const ServiceDiv = styled.div`
 
   }
 
-  p {
+
+    p {
     color: white;
     transition: color 0.4s ease;
   }
