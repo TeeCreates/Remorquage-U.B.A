@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import CircularProgress from "@mui/material/CircularProgress";
 import laval from "../assets/laval.png";
@@ -51,6 +51,16 @@ const Services = () => {
     preloadImages();
   }, [imageSources]);
 console.log("loading", loading)
+
+
+
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  }, []);
   return (
     <>
       {loading ? (
@@ -96,10 +106,10 @@ console.log("loading", loading)
           <AnimatedSection>
             <p>SERVICE AREA</p>
             <Section>
-              <Video autoPlay muted>
-                <source src={textmessage} type="video/mp4" />
-                Your browser does not support the video tag.
-              </Video>
+            <Video ref={videoRef} autoPlay muted>
+      <source src={textmessage} type="video/mp4" />
+      Your browser does not support the video tag.
+    </Video>
               <CitiesDiv>
                 <City>
                   <CityTitle>Montreal</CityTitle>
