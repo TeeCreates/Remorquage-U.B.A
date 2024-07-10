@@ -149,6 +149,11 @@ const Wrapper = styled.div`
   padding: 20px;
   text-align: center;
   color: #333;
+  @media (max-width: 768px) {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
 `;
 
 const CitiesDiv = styled.div`
@@ -156,6 +161,11 @@ const CitiesDiv = styled.div`
   flex-direction: row;
   justify-content: space-around;
   margin-top: 20px;
+  @media (max-width: 768px) {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
 `;
 
 const City = styled.div`
@@ -168,10 +178,20 @@ const CityTitle = styled.h2`
 
 const CityImage = styled.img`
   width: 100%;
+  @media (max-width: 768px) {
+  width:80%;
+
+}
+
 `;
 
 const Icon = styled.img`
   height: 100px;
+  @media (max-width: 768px) {
+width: 50px;
+height: 40px;
+
+}
 `;
 const HumanTouchImg = styled.img`
   height: 150px;
@@ -196,6 +216,14 @@ const ServiceDiv = styled.div`
     color: white;
     transition: color 0.4s ease;
   }
+  @media (max-width: 768px) {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+
+}
 `;
 
 const Section = styled.div`
@@ -204,6 +232,13 @@ const Section = styled.div`
   padding: 50px;
   justify-content: space-around;
   align-items: center;
+  @media (max-width: 768px) {
+display: flex;
+flex-direction: column;
+align-items: center;
+
+
+}
 `;
 
 const Video = styled.video`
@@ -227,11 +262,19 @@ const Video = styled.video`
       opacity: 1;
     }
   }
+  @media (max-width: 768px) {
+width: 90%;
+}
 `;
 
 const DetailedServiceText = styled.div`
   display: flex;
   margin-bottom: 50px;
+  @media (max-width: 768px) {
+
+display: flex;
+flex-direction: column;
+}
 `;
 
 const AnimatedSection = styled.div`
@@ -252,6 +295,11 @@ const AnimatedSection = styled.div`
       opacity: 1;
     }
   }
+  @media (max-width: 768px) {
+display: flex;
+flex-direction: column;
+margin-left: 0px;
+}
 `;
 
 export default Services;

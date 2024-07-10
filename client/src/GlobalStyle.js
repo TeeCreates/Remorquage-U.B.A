@@ -41,6 +41,7 @@ span, p, div {
 body {
     
 background-color: black;
+overflow-x: hidden;
 
 }
 ol, ul {

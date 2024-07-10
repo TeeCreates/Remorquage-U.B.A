@@ -9,11 +9,10 @@ export const Home = () => {
       <SectionWrapper1>
         <IntroText>
           <H1>514-343-2345</H1>
-          <H1>Providng 24/7 towing</H1>
-          <H1>service with prompt </H1>
-          <H1>response</H1>
-          <H3>We are available around the clock to assist you with our </H3>
-          <H3>fast and reliable towing service.</H3>
+          <H1>Providng 24/7 towing service</H1>
+          <H1>with prompt response</H1>
+          <H3>We are available around the clock to assist you </H3>
+          <H3>with our fast and reliable towing service.</H3>
         </IntroText>
         <CarImgWrapper>
           <CarImg src={carbg} alt="" />
@@ -35,8 +34,7 @@ const SectionWrapper1 = styled.div`
 width: 100%;
   @media (max-width: 768px) {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+   align-items: flex-start;
   }
 `;
 
@@ -63,6 +61,9 @@ const IntroText = styled.div`
       opacity: 1;
     }
   }
+  @media (max-width: 768px) {
+  margin-left: 20px;
+  }
 `;
 
 const H1 = styled.h1`
@@ -70,16 +71,25 @@ const H1 = styled.h1`
   font-size: 50px;
   color: white;
   white-space: nowrap;
+  @media (max-width: 768px) {
+    font-size: 30px;
+  }
 `;
 
 const H3 = styled.h3`
   font-size: 18px;
   color: white;
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
 `;
 
 const CarImgWrapper = styled.div`
   position: relative;
   overflow: hidden;
+  @media (max-width: 768px) {
+   align-self: center;
+  }
 `;
 
 const slideFromRight = keyframes`
@@ -95,6 +105,9 @@ const CarImg = styled.img`
   max-height: 90vh;
   width: auto;
   animation: ${slideFromRight} 1s forwards;
+  @media (max-width: 768px) {
+    max-height: 70vh;
+  }
 `;
 
 export default Home;

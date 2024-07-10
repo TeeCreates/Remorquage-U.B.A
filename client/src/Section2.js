@@ -20,6 +20,7 @@ export const Section2 = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
+    // Cleanup function to remove event listener
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -92,10 +93,15 @@ const Wrapper = styled.div`
   padding: 100px;
 
   opacity: 0;
-  transition: opacity 1s ease-in-out;
+  transition: opacity 1.5s ease-in-out;
 
   &.visible {
     opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    margin-top: 0px;
   }
 `;
 
@@ -104,6 +110,11 @@ const BoxDiv = styled.div`
   align-items: center;
   width: 300px;
   padding: 10px;
+  @media (max-width: 768px) {
+
+    margin-top: 25px;
+  }
+
 `;
 
 const Line = styled.div`
