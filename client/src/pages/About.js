@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import CircularProgress from "@mui/material/CircularProgress";
+import  TextMessage from "../TextMessage";
 
 const About = () => {
   const [loading, setLoading] = useState(true);
@@ -22,9 +23,15 @@ const About = () => {
           <CircularProgress style={{ color: "#FFBE33" }} />
         </LoadingContainer>
       ) : (
+        <>
+        
         <div>
 about items
     </div>
+    <TextMessage/>
+        
+        </>
+
       )}
     </>
   );
