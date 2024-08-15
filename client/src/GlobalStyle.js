@@ -71,8 +71,9 @@ button{
 	outline: inherit;
 }
 
-
-
+form,input{
+	color: white;
+}
 
 }
 
