@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import boxIcon from "./assets/boxIcon.jpg";
 import styled from "styled-components";
 
+
 export const Section2 = () => {
   const wrapperRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -27,6 +28,7 @@ export const Section2 = () => {
   }, []);
 
   return (
+    <div>
     <Wrapper ref={wrapperRef} className={isVisible ? "visible" : ""}>
       <div>
         <h3>Reliable</h3>
@@ -63,6 +65,8 @@ export const Section2 = () => {
         </div>
       </div>
     </Wrapper>
+
+    </div>
   );
 };
 

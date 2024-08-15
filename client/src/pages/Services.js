@@ -13,6 +13,7 @@ import boost from "../assets/boost.jpg";
 import cycletow from "../assets/motorcycletow.jpg";
 import tow from "../assets/tow.jpg";
 import Loading from "./Loading";
+import TextMessage from "../TextMessage";
 
 const Services = () => {
   const [loading, setLoading] = useState(true);
@@ -74,7 +75,7 @@ const Services = () => {
               <HumanTouchImg src={tire} alt="" />
               <Icon src={flattire} alt="" />
               <p>
-                Flat-tire replacement <br /> Get back on your way in no time
+                Flat-tire replacement </p> <p> Get back on your way in no time
                 with a properly installed tire
               </p>
             </ServiceDiv>
@@ -82,7 +83,7 @@ const Services = () => {
               <HumanTouchImg src={boost} alt="" />
               <Icon src={charger} alt="" />
               <p>
-                Battery test/or boost<br />Have your battery checked or
+                Battery test/or boost</p> <p>Have your battery checked or
                 replaced on the spot, wherever you may be
               </p>
             </ServiceDiv>
@@ -90,7 +91,7 @@ const Services = () => {
               <HumanTouchImg src={cycletow} alt="" />
               <Icon src={motorcycle} alt="" />
               <p>
-                Motorcycle Towing<br />we'll come to help even if you're riding
+                Motorcycle Towing</p> <p>we'll come to help even if you're riding
                 a motorcycle
               </p>
             </ServiceDiv>
@@ -98,40 +99,31 @@ const Services = () => {
               <HumanTouchImg src={tow} alt="" />
               <Icon src={cartow} alt="" />
               <p>
-                Car Towing <br />
+                Car Towing </p> <p>
                 Let us give you a lift to your place at the same time of the
                 request
               </p>
             </ServiceDiv>
           </DetailedServiceText>
-          <AnimatedSection>
-            <p>SERVICE AREA</p>
-            <Section>
-              <Video autoPlay muted>
-                <source src={textmessage} type="video/mp4" />
-                Your browser does not support the video tag.
-              </Video>
-              <CitiesDiv>
-                <City>
-                  <CityTitle>Montreal</CityTitle>
-                  <CityImage src={montreal} alt="" />
-                </City>
-                <City>
-                  <CityTitle>Laval</CityTitle>
-                  <CityImage src={laval} alt="" />
-                </City>
-              </CitiesDiv>
-            </Section>
-          </AnimatedSection>
+       <LocationWrapper>
+       <TextMessage />
+       <h3>Servicing both Montreal and Laval</h3>
+       </LocationWrapper>
+
         </Wrapper>
       )}
     </>
   );
 };
 
-const Title = styled.span`
+const Title = styled.h1`
+  font-weight: bolder;
   font-size: 50px;
-  margin-bottom: 10px;
+  color: white;
+  white-space: nowrap;
+  @media (max-width: 768px) {
+    font-size: 30px;
+  }
 `;
 
 const LoadingContainer = styled.div`
@@ -150,156 +142,77 @@ const Wrapper = styled.div`
   text-align: center;
   color: #333;
   @media (max-width: 768px) {
-display: flex;
-flex-direction: column;
-align-items: center;
-}
-`;
-
-const CitiesDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-top: 20px;
-  @media (max-width: 768px) {
-display: flex;
-flex-direction: column;
-align-items: center;
-}
-`;
-
-const City = styled.div`
-  width: 100%;
-`;
-
-const CityTitle = styled.h2`
-  font-size: 24px;
-`;
-
-const CityImage = styled.img`
-  width: 100%;
-  @media (max-width: 768px) {
-  width:80%;
-
-}
-
-`;
-
-const Icon = styled.img`
-  height: 100px;
-  @media (max-width: 768px) {
-width: 50px;
-height: 40px;
-
-}
-`;
-const HumanTouchImg = styled.img`
-  height: 150px;
-  width: 200px;
-
-`;
-const ServiceDiv = styled.div`
-  border: 1px solid #ffbe33;
-  width: 100%;
-  margin: 30px;
-  padding: 20px;
-  &:hover {
-    transform: scale(1.05);
-  }
-  &:hover p {
-    color: #ffbe33;
-
-  }
-
-
-    p {
-    color: white;
-    transition: color 0.4s ease;
-  }
-  @media (max-width: 768px) {
-    width: 280px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     padding: 10px;
-
-}
-`;
-
-const Section = styled.div`
-  display: flex;
-  width: 100%;
-  padding: 50px;
-  justify-content: space-around;
-  align-items: center;
-  @media (max-width: 768px) {
-display: flex;
-flex-direction: column;
-align-items: center;
-
-
-}
-`;
-
-const Video = styled.video`
-  border-radius: 20px;
-  height: 600px;
-  width: auto;
-
-  animation: slideIn 2s forwards, fadeIn 1s forwards;
-
-  @keyframes slideIn {
-    from {
-      transform: translateY(100%);
-    }
-    to {
-      transform: translateY(0);
-    }
   }
-
-  @keyframes fadeIn {
-    to {
-      opacity: 1;
-    }
-  }
-  @media (max-width: 768px) {
-width: 90%;
-}
 `;
 
 const DetailedServiceText = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-bottom: 50px;
   @media (max-width: 768px) {
-
-display: flex;
-flex-direction: column;
-}
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
-const AnimatedSection = styled.div`
-  animation: slideIn 1s forwards, fadeIn 1s forwards;
-  margin-left: 100px;
-
-  @keyframes slideIn {
-    from {
-      transform: translateY(100%);
-    }
-    to {
-      transform: translateY(0);
-    }
+const ServiceDiv = styled.div`
+  border: 1px solid #ffbe33;
+  width: 100%;
+  max-width: 300px; /* Adjust max width as needed */
+  margin: 15px;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: left;
+display: flex;
+align-items: center;
+flex-direction: column;
+  &:hover {
+    transform: scale(1.05);
   }
 
-  @keyframes fadeIn {
-    to {
-      opacity: 1;
-    }
+  &:hover p {
+    color: #ffbe33;
   }
+
+  p {
+    color: white;
+    transition: color 0.4s ease;
+  }
+
   @media (max-width: 768px) {
-display: flex;
-flex-direction: column;
-margin-left: 0px;
-}
+    width: 90%; /* Adjust width to fit mobile screens */
+    margin: 10px;
+    padding: 15px;
+  }
 `;
 
+const HumanTouchImg = styled.img`
+  height: 150px;
+  width: auto;
+  max-width: 100%; /* Make sure the image is responsive */
+`;
+
+const Icon = styled.img`
+  height: 50%;
+  width: 50%;
+  max-width: 100%; /* Make sure the icon is responsive */
+  @media (max-width: 768px) {
+    height: 25%;
+  width: 25%;
+  }
+`;
+
+
+const LocationWrapper = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+align-items: center;
+@media (max-width: 768px) {
+  flex-direction: column;
+  
+  }
+`
 export default Services;

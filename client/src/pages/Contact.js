@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import CircularProgress from "@mui/material/CircularProgress";
+import contact from "../assets/contact.png"
 
 const Contact = () => {
   const [loading, setLoading] = useState(true);
@@ -19,12 +20,13 @@ const Contact = () => {
     <>
       {loading ? (
         <LoadingContainer>
-          <CircularProgress style={{ color: "#FFBE33" }} />
+          <CircularProgress style={{ color: "#FFBE33" , zIndex:"99"}} />
         </LoadingContainer>
       ) : (
-       <div>
-           contact items
-       </div>
+       <Wrapper>
+         <Image src={contact} alt="" />
+           <h1>Contact Us</h1>
+       </Wrapper>
       )}
     </>
   );
@@ -42,4 +44,23 @@ const LoadingContainer = styled.div`
 `;
 
 
+
+
+const Image = styled.img`
+
+width: 55%;
+
+`
+
+
+
+const Wrapper = styled.div`
+display: flex;
+justify-content: space-between;
+`
 export default Contact;
+
+
+const Details = styled.div`
+
+`

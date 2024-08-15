@@ -1,5 +1,9 @@
-import React from 'react';
+import React, {useRef, useEffect,useState} from 'react';
 import styled, { keyframes } from 'styled-components';
+import person from "../src/assets/person.png"
+import { LuSendHorizonal } from "react-icons/lu";
+import { FaRegFaceSmile } from "react-icons/fa6";
+
 
 // Define keyframes for rising effect
 const riseUp = keyframes`
@@ -14,7 +18,7 @@ const riseUp = keyframes`
     transform: translateY(0);
   }
 `;
-const TextMessage = () => {
+ const TextMessage = () => {
   // Text message object
   const messages = [
     { sender: "client", text: "Hey! I need your help. I am stuck in Laval 😢 and I need a tire change 🚗" },
@@ -24,12 +28,34 @@ const TextMessage = () => {
     { sender: "operator", text: "We are here 😊" },
     { sender: "client", text: "Wow!! That was quick, I will come out the car" }
   ];
+  const wrapperRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (wrapperRef.current) {
+        const top = wrapperRef.current.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (top < windowHeight) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    // Cleanup function to remove event listener
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
-    <>
+    <Wrapper ref={wrapperRef} className={isVisible ? "visible" : ""}>
+
       <Top>
-        <span>item one</span>
-        <span>item two</span>
+       <PersonIcon src={person} alt="" />
+        <Contact>Remorquage</Contact>
       </Top>
       <Middle>
         TEXT MESSAGE
@@ -45,11 +71,11 @@ const TextMessage = () => {
         })}
       </Middle>
       <Bottom>
-        <div>smile</div>
-        <div>Enter your message here</div>
-        <div>send</div>
+      <FaRegFaceSmile color={"#D3D3D3"}/>
+        <PlaceHolder>Enter your message here</PlaceHolder>
+        <LuSendHorizonal color={"#D3D3D3"}/>
       </Bottom>
-    </>
+    </Wrapper>
   );
 };
 
@@ -63,7 +89,8 @@ const Middle = styled.div`
 `;
 
 const Top = styled.div`
-  background-color: grey;
+  background-color: #FAFAFA;
+ color: black;
   width: 320px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -74,7 +101,7 @@ const Top = styled.div`
 `;
 
 const Bottom = styled.div`
-  background-color: grey;
+  background-color: #F1F1F1;
   width: 320px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -83,7 +110,13 @@ const Bottom = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+
 `;
+
+const PlaceHolder = styled.span`
+  color: #D3D3D3;
+
+`
 
 const MessageRow = styled.div`
   display: flex;
@@ -112,4 +145,24 @@ const Bubble = styled.span`
 
 
 
+const PersonIcon = styled.img`
+height: 30px;
+border-radius: 50%;
+`
+const Contact = styled.span`
+color: black;
+`
 
+
+const Wrapper = styled.div`
+ opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+
+  &.visible {
+    opacity: 1;
+  }
+  @media (max-width: 768px) {
+margin-bottom: 30px;
+  }
+  
+`
