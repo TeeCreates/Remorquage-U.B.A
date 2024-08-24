@@ -14,8 +14,7 @@ export const Home = () => {
           <H1>514-343-2345</H1>
           <H1>{homePageObject.h1}</H1>
           <H3>{homePageObject.h2}</H3>
-          <H3>{homePageObject.h3} </H3>
-          <H3>{homePageObject.h4}</H3>
+          <H3>{homePageObject.h3} {homePageObject.h4}</H3>
         </IntroText>
         <CarImgWrapper>
           <CarImg src={carbg} alt="" />
@@ -54,7 +53,10 @@ const IntroText = styled.div`
   opacity: 0;
   animation: slideIn 1s forwards, fadeIn 1s forwards;
   max-width: 50%;
-
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.5); // Add a semi-transparent background
+  padding: 20px; // Add some padding
+  border-radius: 10px;
   @keyframes slideIn {
     from {
       transform: translateX(-100%);
@@ -84,6 +86,7 @@ const H1 = styled.h1`
   color: white;
   white-space: nowrap;
   margin-bottom: 10px;
+  z-index: 99;
 
   @media (max-width: 768px) {
     font-size: 30px;
@@ -113,6 +116,7 @@ const CarImgWrapper = styled.div`
   position: relative;
   overflow: hidden;
   max-width: 50%;
+  z-index: 1;
 
   @media (max-width: 1024px) {
     max-width: 100%;

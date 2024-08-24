@@ -36,6 +36,7 @@ const About = () => {
               <P>{aboutUsObject.p4}</P>
             </AboutDescription>
           </AboutUs>
+ 
         </Wrapper>
         <Footer />
         </>

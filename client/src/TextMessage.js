@@ -1,33 +1,44 @@
-import React, {useRef, useEffect,useState} from 'react';
+import React, { useRef, useEffect, useState, useContext } from 'react';
 import styled, { keyframes } from 'styled-components';
 import person from "../src/assets/person.png"
 import { LuSendHorizonal } from "react-icons/lu";
 import { FaRegFaceSmile } from "react-icons/fa6";
-
+import { LanguageContext } from "./LanguageContext";
 
 // Define keyframes for rising effect
 const riseUp = keyframes`
   from {
     opacity: 0;
-
     transform: translateY(20px);
   }
   to {
-
     opacity: 1;
     transform: translateY(0);
   }
 `;
- const TextMessage = () => {
-  // Text message object
-  const messages = [
+
+const messagesTranslations = {
+  en: [
     { sender: "client", text: "Hey! I need your help. I am stuck in Laval 😢 and I need a tire change 🚗" },
     { sender: "operator", text: "Don't worry, remorquage will be there to help 😊  What is your location?" },
     { sender: "client", text: "239 Bell Petit Ave, Y7J3D7" },
     { sender: "operator", text: "On our way!" },
     { sender: "operator", text: "We are here 😊" },
     { sender: "client", text: "Wow!! That was quick, I will come out the car" }
-  ];
+  ],
+  fr: [
+    { sender: "client", text: "Salut ! J'ai besoin de votre aide. Je suis bloqué à Laval 😢 et j'ai besoin d'un changement de pneu 🚗" },
+    { sender: "operator", text: "Ne vous inquiétez pas, le remorquage sera là pour vous aider 😊 Quelle est votre localisation ?" },
+    { sender: "client", text: "239 Avenue Bell Petit, Y7J3D7" },
+    { sender: "operator", text: "Nous arrivons !" },
+    { sender: "operator", text: "Nous sommes là 😊" },
+    { sender: "client", text: "Wow !! C'était rapide, je vais sortir de la voiture" }
+  ]
+};
+
+const TextMessage = () => {
+  const { language } = useContext(LanguageContext);
+  const messages = messagesTranslations[language];
   const wrapperRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -50,16 +61,16 @@ const riseUp = keyframes`
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   return (
     <Wrapper ref={wrapperRef} className={isVisible ? "visible" : ""}>
-
       <Top>
-       <PersonIcon src={person} alt="" />
+        <PersonIcon src={person} alt="" />
         <Contact>Remorquage</Contact>
       </Top>
       <Middle>
-        TEXT MESSAGE
-        {messages.map((item, index) => {
+        {language === 'en' ? 'TEXT MESSAGE' : 'MESSAGE TEXTE'}
+        {messages && messages.map((item, index) => {
           const isUser = item.sender === "client";
           return (
             <MessageRow key={index} isUser={isUser}>
@@ -71,8 +82,8 @@ const riseUp = keyframes`
         })}
       </Middle>
       <Bottom>
-      <FaRegFaceSmile color={"#D3D3D3"}/>
-        <PlaceHolder>Enter your message here</PlaceHolder>
+        <FaRegFaceSmile color={"#D3D3D3"}/>
+        <PlaceHolder>{language === 'en' ? 'Enter your message here' : 'Entrez votre message ici'}</PlaceHolder>
         <LuSendHorizonal color={"#D3D3D3"}/>
       </Bottom>
     </Wrapper>
@@ -80,6 +91,8 @@ const riseUp = keyframes`
 };
 
 export default TextMessage;
+
+
 
 const Middle = styled.div`
   background-color: white;

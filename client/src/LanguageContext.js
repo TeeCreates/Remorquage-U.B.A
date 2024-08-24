@@ -38,9 +38,9 @@ requestTitle:"Request a Tow and Know What to Expect"
     },
     fr:{
 
-        h1:"Assurer un remorquage 24h/24",
+        h1:"Assurer un remorquage 24h/7",
         h2:"service avec réponse rapide",
-        h3:"Nous sommes disponibles 24 heures sur 24 pour vous aider",
+        h3:"Nous sommes disponibles pour vous aider",
         h4:"avec notre service de remorquage rapide et fiable.",
         box1:"Processus Facile",
         box2:"Réponse Rapide",
@@ -51,7 +51,24 @@ requestTitle:"Request a Tow and Know What to Expect"
         requestTitle1:"à quoi vous attendre",
     }
 }
-
+const messagesTranslations = {
+    en: [
+      { sender: "client", text: "Hey! I need your help. I am stuck in Laval 😢 and I need a tire change 🚗" },
+      { sender: "operator", text: "Don't worry, remorquage will be there to help 😊  What is your location?" },
+      { sender: "client", text: "239 Bell Petit Ave, Y7J3D7" },
+      { sender: "operator", text: "On our way!" },
+      { sender: "operator", text: "We are here 😊" },
+      { sender: "client", text: "Wow!! That was quick, I will come out the car" }
+    ],
+    fr: [
+      { sender: "client", text: "Salut ! J'ai besoin de votre aide. Je suis bloqué à Laval 😢 et j'ai besoin d'un changement de pneu 🚗" },
+      { sender: "operator", text: "Ne vous inquiétez pas, le remorquage sera là pour vous aider 😊 Quelle est votre localisation ?" },
+      { sender: "client", text: "239 Avenue Bell Petit, Y7J3D7" },
+      { sender: "operator", text: "Nous arrivons !" },
+      { sender: "operator", text: "Nous sommes là 😊" },
+      { sender: "client", text: "Wow !! C'était rapide, je vais sortir de la voiture" }
+    ]
+  };
 
 const ourServicesObject = {
     en: {
@@ -188,6 +205,7 @@ ourServicesObject: ourServicesObject[language],
 aboutUsObject: aboutUsObject[language],  // Add this line,
 contactObject: contactObject[language],
 footerObject: footerObject[language],
+messagesTranslations: messagesTranslations[language],
 changeLanguage,
 }}
 >

@@ -72,6 +72,7 @@ const Services = () => {
           <CircularProgress style={{ color: "#FFBE33" }} />
         </LoadingContainer>
       ) : (
+        <>
         <Wrapper>
           <Title>OUR SERVICES</Title>
           <DetailedServiceText>
@@ -111,8 +112,10 @@ const Services = () => {
        </LocationWrapper>
 
         </Wrapper>
+               <Footer />
+               </>
       )}
-      <Footer/>
+
     </>
   );
 };

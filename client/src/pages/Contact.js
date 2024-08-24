@@ -35,6 +35,7 @@ const Contact = () => {
                 <SubmitButton type="submit" value={contactObject.send} />
               </Form>
             </FormWrapper>
+
           </Wrapper>
           <Footer />
         </>
