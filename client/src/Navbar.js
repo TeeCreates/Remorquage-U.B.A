@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
+import { LanguageContext } from "./LanguageContext";
+
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState(window.location.pathname);
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const {navbarObject, setLanguage, language} = useContext(LanguageContext)
+ 
   useEffect(() => {
     setActiveLink(window.location.pathname);
   }, []);
@@ -34,6 +37,10 @@ const Navbar = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  console.log(language, "this is the language set")
+  //
+console.log("testing accessing navbarobject", navbarObject["home"])
+
 
   return (
     <NavbarWrapper>
@@ -52,30 +59,34 @@ const Navbar = () => {
           onClick={() => handleNavigation("/")}
           className={activeLink === "/" ? "active" : ""}
         >
-          Home
+            {navbarObject.home}
         </Button>
         <Button
           onClick={() => handleNavigation("/services")}
           className={activeLink === "/services" ? "active" : ""}
         >
-          Services
+          {navbarObject.services}
         </Button>
         <Button
           onClick={() => handleNavigation("/about")}
           className={activeLink === "/about" ? "active" : ""}
         >
-          About Us
+              {navbarObject.about}
         </Button>
         <Button
           onClick={() => handleNavigation("/contact")}
           className={activeLink === "/contact" ? "active" : ""}
         >
-          Contact
+           {navbarObject.contact}
         </Button>
+        <Button onClick={()=> setLanguage("en")}>En</Button>
+        <Button onClick={()=> setLanguage("fr")}>Fr</Button>
       </NavLinks>
     </NavbarWrapper>
   );
 };
+
+
 
 const NavbarWrapper = styled.div`
   display: flex;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import styled from "styled-components";
 import CircularProgress from "@mui/material/CircularProgress";
 import laval from "../assets/laval.png";
@@ -14,9 +14,12 @@ import cycletow from "../assets/motorcycletow.jpg";
 import tow from "../assets/tow.jpg";
 import Loading from "./Loading";
 import TextMessage from "../TextMessage";
+import { LanguageContext } from "../LanguageContext";
 
 const Services = () => {
   const [loading, setLoading] = useState(true);
+  const {ourServicesObject} = useContext(LanguageContext)
+
   const imageSources = [
     laval,
     montreal,
@@ -75,33 +78,29 @@ const Services = () => {
               <HumanTouchImg src={tire} alt="" />
               <Icon src={flattire} alt="" />
               <p>
-                Flat-tire replacement </p> <p> Get back on your way in no time
-                with a properly installed tire
+               {ourServicesObject.flatTire.service}</p> <p> {ourServicesObject.flatTire.description}
               </p>
             </ServiceDiv>
             <ServiceDiv>
               <HumanTouchImg src={boost} alt="" />
               <Icon src={charger} alt="" />
               <p>
-                Battery test/or boost</p> <p>Have your battery checked or
-                replaced on the spot, wherever you may be
+              {ourServicesObject.battery.service}</p> <p>{ourServicesObject.battery.description}
               </p>
             </ServiceDiv>
             <ServiceDiv>
               <HumanTouchImg src={cycletow} alt="" />
               <Icon src={motorcycle} alt="" />
               <p>
-                Motorcycle Towing</p> <p>we'll come to help even if you're riding
-                a motorcycle
+                {ourServicesObject.motorcycle.service}</p> <p>{ourServicesObject.motorcycle.description}
               </p>
             </ServiceDiv>
             <ServiceDiv>
               <HumanTouchImg src={tow} alt="" />
               <Icon src={cartow} alt="" />
               <p>
-                Car Towing </p> <p>
-                Let us give you a lift to your place at the same time of the
-                request
+                {ourServicesObject.car.service} </p> <p>
+{ourServicesObject.car.description}
               </p>
             </ServiceDiv>
           </DetailedServiceText>

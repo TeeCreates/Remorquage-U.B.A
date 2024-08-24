@@ -1,12 +1,17 @@
 import React, { useRef, useEffect, useState } from "react";
 import boxIcon from "./assets/boxIcon.jpg";
 import styled from "styled-components";
+import { LanguageContext } from "./LanguageContext";
+import { useContext } from "react";
 
 
 export const Section2 = () => {
   const wrapperRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+  const {homePageObject} = useContext(LanguageContext)
 
+
+  console.log(homePageObject.box1, "home")
   useEffect(() => {
     const handleScroll = () => {
       if (wrapperRef.current) {
@@ -31,36 +36,36 @@ export const Section2 = () => {
     <div>
     <Wrapper ref={wrapperRef} className={isVisible ? "visible" : ""}>
       <div>
-        <h3>Reliable</h3>
-        <H1>Request a Tow and Know </H1>
-        <H1>What to Expect</H1>
+        <h3>{homePageObject.reliable}</h3>
+        <H1>{homePageObject.requestTitle} </H1>
+        <H1>{homePageObject.requestTitle1}</H1>
       </div>
       <div>
         <div>
           <BoxDiv>
             <BoxIconImg src={boxIcon} alt="" />
-            <H2>Easy Process</H2>
+            <H2>{homePageObject.box1}</H2>
           </BoxDiv>
           <Line></Line>
         </div>
         <div>
           <BoxDiv>
             <BoxIconImg src={boxIcon} alt="" />
-            <H2>Fast Response</H2>
+            <H2>{homePageObject.box2}</H2>
           </BoxDiv>
           <Line></Line>
         </div>
         <div>
           <BoxDiv>
             <BoxIconImg src={boxIcon} alt="" />
-            <H2>Safe and Secure</H2>
+            <H2>{homePageObject.box3}</H2>
           </BoxDiv>
           <Line></Line>
         </div>
         <div>
           <BoxDiv>
             <BoxIconImg src={boxIcon} alt="" />
-            <H2>Transparent Pricing</H2>
+            <H2>{homePageObject.box4}</H2>
           </BoxDiv>
         </div>
       </div>

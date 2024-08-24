@@ -1,18 +1,21 @@
 import carbg from "./assets/carbg.jpg";
 import styled, { keyframes } from "styled-components";
 import { Section2 } from "./Section2";
+import { LanguageContext } from "./LanguageContext";
+import { useContext } from "react";
 
 
 export const Home = () => {
+  const {homePageObject} = useContext(LanguageContext)
   return (
     <>
       <SectionWrapper1>
         <IntroText>
           <H1>514-343-2345</H1>
-          <H1>Providng 24/7 towing service</H1>
-          <H1>with prompt response</H1>
-          <H3>We are available around the clock to assist you </H3>
-          <H3>with our fast and reliable towing service.</H3>
+          <H1>{homePageObject.h1}</H1>
+          <H3>{homePageObject.h2}</H3>
+          <H3>{homePageObject.h3} </H3>
+          <H3>{homePageObject.h4}</H3>
         </IntroText>
         <CarImgWrapper>
           <CarImg src={carbg} alt="" />
