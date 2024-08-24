@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import CircularProgress from "@mui/material/CircularProgress";
 import contact from "../assets/contact.png";
+import Footer from "../Footer";
+import { LanguageContext } from "../LanguageContext"; // Adjust the import path as necessary
 
 const Contact = () => {
   const [loading, setLoading] = useState(true);
+  const { contactObject } = useContext(LanguageContext);
 
   useEffect(() => {
-    // Set loading to false when component mounts
     setLoading(false);
   }, []);
 
@@ -18,25 +20,29 @@ const Contact = () => {
           <CircularProgress style={{ color: "#FFBE33", zIndex: "99" }} />
         </LoadingContainer>
       ) : (
-        <Wrapper>
-          <Image src={contact} alt="Contact" />
-          <FormWrapper>
-            <Form id="contact-form">
-              <H1>Contact Us</H1>
-              <Label>Name</Label>
-              <Input type="text" name="user_name" />
-              <Label>Email</Label>
-              <Input type="email" name="user_email" />
-              <Label>Message</Label>
-              <Textarea name="message" />
-              <SubmitButton type="submit" value="Send" />
-            </Form>
-          </FormWrapper>
-        </Wrapper>
+        <>
+          <Wrapper>
+            <Image src={contact} alt="Contact" />
+            <FormWrapper>
+              <Form id="contact-form">
+                <H1>{contactObject.title}</H1>
+                <Label>{contactObject.name}</Label>
+                <Input type="text" name="user_name" placeholder={contactObject.namePlaceholder} />
+                <Label>{contactObject.email}</Label>
+                <Input type="email" name="user_email" placeholder={contactObject.emailPlaceholder} />
+                <Label>{contactObject.message}</Label>
+                <Textarea name="message" placeholder={contactObject.messagePlaceholder} />
+                <SubmitButton type="submit" value={contactObject.send} />
+              </Form>
+            </FormWrapper>
+          </Wrapper>
+          <Footer />
+        </>
       )}
     </>
   );
 };
+
 
 const LoadingContainer = styled.div`
   position: fixed;

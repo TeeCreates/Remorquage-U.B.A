@@ -4,12 +4,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { GlobalStyle } from './GlobalStyle';
 import { LanguageProvider } from './LanguageContext';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
       <GlobalStyle/>
       <LanguageProvider>
     <App />
+
     </LanguageProvider>
   </React.StrictMode>
 );

@@ -15,6 +15,7 @@ import tow from "../assets/tow.jpg";
 import Loading from "./Loading";
 import TextMessage from "../TextMessage";
 import { LanguageContext } from "../LanguageContext";
+import Footer from "../Footer";
 
 const Services = () => {
   const [loading, setLoading] = useState(true);
@@ -111,6 +112,7 @@ const Services = () => {
 
         </Wrapper>
       )}
+      <Footer/>
     </>
   );
 };

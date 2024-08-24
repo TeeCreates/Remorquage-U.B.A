@@ -4,12 +4,11 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import { LanguageContext } from "./LanguageContext";
 
-
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState(window.location.pathname);
   const [menuOpen, setMenuOpen] = useState(false);
-  const {navbarObject, setLanguage, language} = useContext(LanguageContext)
- 
+  const { navbarObject, setLanguage, language } = useContext(LanguageContext);
+
   useEffect(() => {
     setActiveLink(window.location.pathname);
   }, []);
@@ -18,18 +17,18 @@ const Navbar = () => {
     setActiveLink(path);
     window.location.href = path;
     setMenuOpen(false);
-    document.body.style.overflowX = ""; // Reset overflow-x when menu is closed
+    document.body.style.overflowX = "";
   };
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
-    document.body.style.overflowX = menuOpen ? "" : "hidden"; // Toggle overflow-x
+    document.body.style.overflowX = menuOpen ? "" : "hidden";
   };
 
   useEffect(() => {
     const handleResize = () => {
       setMenuOpen(false);
-      document.body.style.overflowX = ""; // Reset overflow-x on resize
+      document.body.style.overflowX = "";
     };
 
     window.addEventListener("resize", handleResize);
@@ -37,10 +36,6 @@ const Navbar = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  console.log(language, "this is the language set")
-  //
-console.log("testing accessing navbarobject", navbarObject["home"])
-
 
   return (
     <NavbarWrapper>
@@ -59,7 +54,7 @@ console.log("testing accessing navbarobject", navbarObject["home"])
           onClick={() => handleNavigation("/")}
           className={activeLink === "/" ? "active" : ""}
         >
-            {navbarObject.home}
+          {navbarObject.home}
         </Button>
         <Button
           onClick={() => handleNavigation("/services")}
@@ -71,21 +66,30 @@ console.log("testing accessing navbarobject", navbarObject["home"])
           onClick={() => handleNavigation("/about")}
           className={activeLink === "/about" ? "active" : ""}
         >
-              {navbarObject.about}
+          {navbarObject.about}
         </Button>
         <Button
           onClick={() => handleNavigation("/contact")}
           className={activeLink === "/contact" ? "active" : ""}
         >
-           {navbarObject.contact}
+          {navbarObject.contact}
         </Button>
-        <Button onClick={()=> setLanguage("en")}>En</Button>
-        <Button onClick={()=> setLanguage("fr")}>Fr</Button>
+        <LanguageButton 
+          onClick={() => setLanguage("en")} 
+          className={language === "en" ? "active" : ""}
+        >
+          En
+        </LanguageButton>
+        <LanguageButton 
+          onClick={() => setLanguage("fr")} 
+          className={language === "fr" ? "active" : ""}
+        >
+          Fr
+        </LanguageButton>
       </NavLinks>
     </NavbarWrapper>
   );
 };
-
 
 
 const NavbarWrapper = styled.div`
@@ -180,6 +184,13 @@ const HamburgerMenu = styled.div`
 
   @media (max-width: 768px) {
     display: flex;
+  }
+`;
+
+const LanguageButton = styled(Button)`
+  &.active {
+    background-position: left bottom;
+    color: black;
   }
 `;
 

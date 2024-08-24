@@ -1,12 +1,12 @@
+import React, { useContext } from "react";
 import carbg from "./assets/carbg.jpg";
 import styled, { keyframes } from "styled-components";
 import { Section2 } from "./Section2";
 import { LanguageContext } from "./LanguageContext";
-import { useContext } from "react";
-
+import Footer from "./Footer";
 
 export const Home = () => {
-  const {homePageObject} = useContext(LanguageContext)
+  const { homePageObject } = useContext(LanguageContext);
   return (
     <>
       <SectionWrapper1>
@@ -23,6 +23,7 @@ export const Home = () => {
       </SectionWrapper1>
 
       <Section2 />
+      <Footer />
     </>
   );
 };
@@ -34,10 +35,14 @@ const SectionWrapper1 = styled.div`
   align-items: center;
   position: relative;
   overflow: hidden;
-width: 100%;
-  @media (max-width: 768px) {
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+
+  @media (max-width: 1024px) {
     flex-direction: column;
-   align-items: flex-start;
+    align-items: center;
+    margin-top: 30px;
   }
 `;
 
@@ -48,7 +53,7 @@ const IntroText = styled.div`
   align-items: flex-start;
   opacity: 0;
   animation: slideIn 1s forwards, fadeIn 1s forwards;
-  margin-left: 100px;
+  max-width: 50%;
 
   @keyframes slideIn {
     from {
@@ -64,8 +69,12 @@ const IntroText = styled.div`
       opacity: 1;
     }
   }
-  @media (max-width: 768px) {
-  margin-left: 20px;
+
+  @media (max-width: 1024px) {
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px;
   }
 `;
 
@@ -74,24 +83,41 @@ const H1 = styled.h1`
   font-size: 50px;
   color: white;
   white-space: nowrap;
+  margin-bottom: 10px;
+
   @media (max-width: 768px) {
     font-size: 30px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 24px;
+    white-space: normal;
   }
 `;
 
 const H3 = styled.h3`
   font-size: 18px;
   color: white;
+  margin-bottom: 5px;
+
   @media (max-width: 768px) {
     font-size: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
   }
 `;
 
 const CarImgWrapper = styled.div`
   position: relative;
   overflow: hidden;
-  @media (max-width: 768px) {
-   align-self: center;
+  max-width: 50%;
+
+  @media (max-width: 1024px) {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
   }
 `;
 
@@ -108,8 +134,15 @@ const CarImg = styled.img`
   max-height: 90vh;
   width: auto;
   animation: ${slideFromRight} 1s forwards;
+
+  @media (max-width: 1024px) {
+    max-height: 60vh;
+    width: 100%;
+    object-fit: contain;
+  }
+
   @media (max-width: 768px) {
-    max-height: 70vh;
+    max-height: 50vh;
   }
 `;
 
