@@ -74,7 +74,7 @@ const Services = () => {
       ) : (
         <>
         <Wrapper>
-          <Title>OUR SERVICES</Title>
+          <Title>{ourServicesObject.ourService}</Title>
           <DetailedServiceText>
             <ServiceDiv>
               <HumanTouchImg src={tire} alt="" />

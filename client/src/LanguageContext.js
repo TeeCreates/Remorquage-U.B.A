@@ -90,7 +90,8 @@ const ourServicesObject = {
             service:"Car Towing",
             description:"Let us give you a lift to your place at the same time of the request",
         },
-        servicing:"Servicing Both Montreal and Laval"
+        servicing:"Servicing Both Montreal and Laval",
+        ourService:"Our Services"
     },
     fr: {
         flatTire : {
@@ -109,7 +110,8 @@ const ourServicesObject = {
         service: "Remorquage de voiture",
         description: "Laissez-nous vous ramener chez vous en même temps que la demande",
         },
-        servicing:"Desservir Montréal et Laval"
+        servicing:"Desservir Montréal et Laval",
+        ourService:"Nos Services"
         }
 
 }
