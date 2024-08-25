@@ -11,7 +11,7 @@ export const Home = () => {
     <>
       <SectionWrapper1>
         <IntroText>
-          <H1>514-343-2345</H1>
+          <H1>514-273-8999</H1>
           <H1>{homePageObject.h1}</H1>
           <H3>{homePageObject.h2}</H3>
           <H3>{homePageObject.h3} {homePageObject.h4}</H3>
