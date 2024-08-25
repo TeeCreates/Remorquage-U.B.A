@@ -97,32 +97,36 @@ const NavbarWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   color: #ffbe33;
-  position: relative;
+  position: fixed; // Change from relative to fixed
+  top: 0;
+  left: 0;
+  right: 0;
   height: 60px;
   padding-top: 10px;
   align-items: center;
+  background-color: #000; // Add a background color
+  z-index: 1000; // Ensure it's above other content
 
   @media (max-width: 450px) {
     flex-direction: row;
-
   }
 `;
 
 const NavLinks = styled.div`
   display: flex;
   align-items: center;
-  overflow-y: auto; /* Enable vertical scroll if content exceeds viewport */
-  overflow-x: hidden; /* Hide horizontal scroll */
+  overflow-y: auto;
+  overflow-x: hidden;
 
   @media (max-width: 768px) {
     flex-direction: column;
-    position: absolute;
+    position: fixed; // Change from absolute to fixed
     top: 60px;
-    right: ${(props) => (props.open ? '0' : '-450px')};
+    right: ${(props) => (props.open ? '0' : '-100%')}; // Use percentage instead of pixels
     background: rgba(0,0,0,0.9);
-    
-    width: 375px;
-    height: 100vh;
+    width: 100%; // Full width of the viewport
+    max-width: 375px; // Maximum width
+    height: calc(100vh - 60px); // Subtract navbar height
     z-index: 999;
     box-shadow: -10px 0 10px rgba(0,0,0,0.1);
     transition: right 0.3s ease;
