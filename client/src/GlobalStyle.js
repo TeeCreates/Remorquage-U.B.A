@@ -43,6 +43,7 @@ body {
 background-color: black;
 overflow-x: hidden;
 
+
 }
 ol, ul {
 	list-style: none;

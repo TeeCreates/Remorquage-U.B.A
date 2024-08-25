@@ -4,11 +4,12 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import { LanguageContext } from "./LanguageContext";
 
+
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState(window.location.pathname);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { navbarObject, setLanguage, language } = useContext(LanguageContext);
-
+  const {navbarObject, setLanguage, language} = useContext(LanguageContext)
+ 
   useEffect(() => {
     setActiveLink(window.location.pathname);
   }, []);
@@ -17,18 +18,18 @@ const Navbar = () => {
     setActiveLink(path);
     window.location.href = path;
     setMenuOpen(false);
-    document.body.style.overflowX = "";
+    document.body.style.overflowX = ""; // Reset overflow-x when menu is closed
   };
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
-    document.body.style.overflowX = menuOpen ? "" : "hidden";
+    document.body.style.overflowX = menuOpen ? "" : "hidden"; // Toggle overflow-x
   };
 
   useEffect(() => {
     const handleResize = () => {
       setMenuOpen(false);
-      document.body.style.overflowX = "";
+      document.body.style.overflowX = ""; // Reset overflow-x on resize
     };
 
     window.addEventListener("resize", handleResize);
@@ -36,6 +37,10 @@ const Navbar = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  console.log(language, "this is the language set")
+  //
+console.log("testing accessing navbarobject", navbarObject["home"])
+
 
   return (
     <NavbarWrapper>
@@ -54,7 +59,7 @@ const Navbar = () => {
           onClick={() => handleNavigation("/")}
           className={activeLink === "/" ? "active" : ""}
         >
-          {navbarObject.home}
+            {navbarObject.home}
         </Button>
         <Button
           onClick={() => handleNavigation("/services")}
@@ -66,30 +71,21 @@ const Navbar = () => {
           onClick={() => handleNavigation("/about")}
           className={activeLink === "/about" ? "active" : ""}
         >
-          {navbarObject.about}
+              {navbarObject.about}
         </Button>
         <Button
           onClick={() => handleNavigation("/contact")}
           className={activeLink === "/contact" ? "active" : ""}
         >
-          {navbarObject.contact}
+           {navbarObject.contact}
         </Button>
-        <LanguageButton 
-          onClick={() => setLanguage("en")} 
-          className={language === "en" ? "active" : ""}
-        >
-          En
-        </LanguageButton>
-        <LanguageButton 
-          onClick={() => setLanguage("fr")} 
-          className={language === "fr" ? "active" : ""}
-        >
-          Fr
-        </LanguageButton>
+        <Button onClick={()=> setLanguage("en")}>En</Button>
+        <Button onClick={()=> setLanguage("fr")}>Fr</Button>
       </NavLinks>
     </NavbarWrapper>
   );
 };
+
 
 
 const NavbarWrapper = styled.div`
@@ -97,36 +93,31 @@ const NavbarWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   color: #ffbe33;
-  position: fixed; // Change from relative to fixed
-  top: 0;
-  left: 0;
-  right: 0;
   height: 60px;
   padding-top: 10px;
   align-items: center;
-  background-color: #000; // Add a background color
-  z-index: 1000; // Ensure it's above other content
 
   @media (max-width: 450px) {
     flex-direction: row;
+
   }
 `;
 
 const NavLinks = styled.div`
   display: flex;
   align-items: center;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow-y: auto; /* Enable vertical scroll if content exceeds viewport */
+  overflow-x: hidden; /* Hide horizontal scroll */
 
   @media (max-width: 768px) {
     flex-direction: column;
-    position: fixed; // Change from absolute to fixed
+    position: absolute;
     top: 60px;
-    right: ${(props) => (props.open ? '0' : '-100%')}; // Use percentage instead of pixels
+    right: ${(props) => (props.open ? '0' : '-450px')};
     background: rgba(0,0,0,0.9);
-    width: 100%; // Full width of the viewport
-    max-width: 375px; // Maximum width
-    height: calc(100vh - 60px); // Subtract navbar height
+    
+    width: 375px;
+    height: 100vh;
     z-index: 999;
     box-shadow: -10px 0 10px rgba(0,0,0,0.1);
     transition: right 0.3s ease;
@@ -188,13 +179,6 @@ const HamburgerMenu = styled.div`
 
   @media (max-width: 768px) {
     display: flex;
-  }
-`;
-
-const LanguageButton = styled(Button)`
-  &.active {
-    background-position: left bottom;
-    color: black;
   }
 `;
 
