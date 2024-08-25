@@ -89,7 +89,8 @@ const ourServicesObject = {
         car:{
             service:"Car Towing",
             description:"Let us give you a lift to your place at the same time of the request",
-        }
+        },
+        servicing:"Servicing Both Montreal and Laval"
     },
     fr: {
         flatTire : {
@@ -107,7 +108,8 @@ const ourServicesObject = {
         car:{
         service: "Remorquage de voiture",
         description: "Laissez-nous vous ramener chez vous en même temps que la demande",
-        }
+        },
+        servicing:"Desservir Montréal et Laval"
         }
 
 }
@@ -139,9 +141,10 @@ const aboutUsObject = {
       namePlaceholder: "Enter your name",
       emailPlaceholder: "Enter your email",
       messagePlaceholder: "Enter your message",
+      successMessage: "Your message has been sent successfully!",
     },
     fr: {
-      title: "Contactez-nous",
+      title: "Contactez-Nous",
       name: "Nom",
       email: "Courriel",
       message: "Message",
@@ -149,6 +152,7 @@ const aboutUsObject = {
       namePlaceholder: "Entrez votre nom",
       emailPlaceholder: "Entrez votre courriel",
       messagePlaceholder: "Entrez votre message",
+      successMessage: "Votre message a été envoyé avec succès !",
     }
   };
 

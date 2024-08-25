@@ -216,7 +216,7 @@ justify-content: space-around;
 align-items: center;
 @media (max-width: 768px) {
   flex-direction: column;
-  
+  margin-bottom: 30px;
   }
 `
 export default Services;
